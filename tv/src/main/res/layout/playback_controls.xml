@@ -32,7 +32,7 @@
 
   <fragment
     android:id="@+id/playback_controls_fragment"
-    android:name="devfestist14.android.alosdev.de.devfestist14.PlaybackOverlayFragment"
+    android:name="de.alosdev.android.devfestist14.PlaybackOverlayFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
 
