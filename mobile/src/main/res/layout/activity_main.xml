@@ -9,8 +9,32 @@
                 tools:context=".MainActivity">
 
   <TextView
+    android:id="@+id/textview1"
     android:text="@string/hello_world"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"/>
+
+  <EditText
+    android:id="@+id/edittext"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_below="@id/textview1"
+    android:layout_alignBottom="@+id/button"
+    android:hint="say hello to"
+    android:layout_toLeftOf="@+id/button"/>
+  <Button
+    android:id="@+id/button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/textview1"
+    android:layout_alignParentRight="true"
+    android:text="press"/>
+
+  <TextView
+    android:id="@+id/textview2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/button"/>
 
 </RelativeLayout>

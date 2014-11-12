@@ -1,17 +1,37 @@
 package de.alosdev.android.devfestist14;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.extensions.android.json.AndroidJsonFactory;
+import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
+import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+
+import java.io.IOException;
+
+import de.alosdev.cloud.devfestist14.myApi.MyApi;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements View.OnClickListener {
+
+  EditText editText;
+  TextView textView;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    editText = (EditText) findViewById(R.id.edittext);
+    textView = (TextView) findViewById(R.id.textview2);
+    findViewById(R.id.button).setOnClickListener(this);
   }
 
 
@@ -35,5 +55,39 @@ public class MainActivity extends ActionBarActivity {
     }
 
     return super.onOptionsItemSelected(item);
+  }
+
+  @Override
+  public void onClick(View v) {
+    if (R.id.button == v.getId()) {
+
+      new AsyncTask<String, Void, String>() {
+
+        @Override
+        protected String doInBackground(String... params) {
+          try {
+            MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null);
+            builder.setRootUrl("http://10.0.2.2:8080/_ah/api").setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
+              @Override
+              public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
+                abstractGoogleClientRequest.setDisableGZipContent(true);
+              }
+            });
+            MyApi myApi = builder.build();
+            return myApi.sayHi(params[0]).execute().getData();
+          } catch (IOException e) {
+            Log.e(MainActivity.class.getSimpleName(), "cannot contact service", e);
+          } finally {
+
+          }
+          return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+          textView.setText(s);
+        }
+      }.execute(editText.getText().toString());
+    }
   }
 }
