@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+  package="de.alosdev.android.devfestist14"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
+  <uses-feature
+    android:name="android.hardware.touchscreen"
+    android:required="false"/>
+  <uses-feature
+    android:name="android.software.leanback"
+    android:required="false"/>
+
+  <application
+    android:allowBackup="true"
+    android:icon="@drawable/ic_launcher"
+    android:label="@string/app_name"
+    android:theme="@style/AppTheme">
+    <activity
+      android:name="de.alosdev.android.devfestist14.phone.MainActivity"
+      android:label="@string/app_name">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+    <activity
+      android:name="de.alosdev.android.devfestist14.tv.MainActivity"
+      android:icon="@drawable/app_icon_your_company"
+      android:label="@string/app_name"
+      android:logo="@drawable/app_icon_your_company"
+      android:screenOrientation="landscape"
+      android:theme="@style/TvAppTheme">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+
+        <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
+      </intent-filter>
+    </activity>
+    <activity
+      android:name="de.alosdev.android.devfestist14.tv.DetailsActivity"
+      android:theme="@style/TvAppTheme"/>
+    <activity
+      android:name="de.alosdev.android.devfestist14.tv.PlaybackOverlayActivity"
+      android:theme="@style/TvAppTheme"/>
+    <activity
+      android:name="de.alosdev.android.devfestist14.tv.BrowseErrorActivity"
+      android:theme="@style/TvAppTheme"/>
+
+  </application>
+
+</manifest>
