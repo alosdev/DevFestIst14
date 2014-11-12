@@ -1,4 +1,4 @@
-package de.alosdev.android.devfestist14;
+package de.alosdev.android.devfestist14.tv.devfestist14;
 
 import android.app.Activity;
 import android.os.Bundle;

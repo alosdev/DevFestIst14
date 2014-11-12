@@ -1,1 +1,1 @@
-include ':mobile', ':tv', ':wear', ':cloud'
+include ':app', ':wear', ':cloud'
